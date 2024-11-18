@@ -1,0 +1,48 @@
+{"frames": {
+
+"Asset 7.png":
+{
+	"frame": {"x":0,"y":0,"w":73,"h":141},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":73,"h":141},
+	"sourceSize": {"w":73,"h":141},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Asset 8.png":
+{
+	"frame": {"x":73,"y":0,"w":73,"h":140},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":73,"h":140},
+	"sourceSize": {"w":73,"h":140},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Asset 9.png":
+{
+	"frame": {"x":146,"y":0,"w":81,"h":140},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":140},
+	"sourceSize": {"w":81,"h":140},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Asset 10.png":
+{
+	"frame": {"x":227,"y":0,"w":106,"h":147},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":147},
+	"sourceSize": {"w":106,"h":147},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "naruto.png",
+	"format": "RGBA8888",
+	"size": {"w":333,"h":147},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:2df2e8c8c6eb03b35fa44b918a623513:fcd1d68416998ad7b00d35fbe435e36f:d2bdf57392fa35c7652aa68790c0481b$"
+}
+}
