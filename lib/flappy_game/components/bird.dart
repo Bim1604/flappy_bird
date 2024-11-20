@@ -1,19 +1,23 @@
 import 'dart:async';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:flappy_bird/flappy_game/data/data_app.dart';
+import 'package:flappy_bird/flappy_game/models/score_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flappy_bird/flappy_game/data/asset.dart';
 import 'package:flappy_bird/flappy_game/config/bird_movement.dart';
 import 'package:flappy_bird/flappy_game/config/config.dart';
 import 'package:flappy_bird/flappy_game/flappy_game.dart';
+import 'package:intl/intl.dart';
 
 class Bird extends SpriteGroupComponent<BirdMovement> with HasGameRef<FlappyGame>, CollisionCallbacks {
   Bird();
 
   int score = 0;
+
+
 
   @override
   FutureOr<void> onLoad() async {
@@ -65,7 +69,14 @@ class Bird extends SpriteGroupComponent<BirdMovement> with HasGameRef<FlappyGame
   void gameOver() {
     FlameAudio.play(Assets.collision);
     gameRef.isHit = true;
-    gameRef.overlays.add('gameOver');
+    gameRef.overlays.add(DataApp.gameOver);
+    ScoreModel model = ScoreModel(
+      id: 0,
+      map: 0,
+      score: score,
+      timeScore: DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now())
+    );
+    gameRef.dataScore.saveScore(model);
     gameRef.pauseEngine();
   }
 

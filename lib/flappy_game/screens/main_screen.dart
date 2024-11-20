@@ -1,11 +1,10 @@
+import 'package:flappy_bird/flappy_game/data/data_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flappy_bird/flappy_game/data/asset.dart';
 import 'package:flappy_bird/flappy_game/flappy_game.dart';
 
 class MainMenuScreen extends StatelessWidget {
   final FlappyGame game;
-  static const String id = 'mainMenu';
-
   const MainMenuScreen({super.key, required this.game});
 
   @override
@@ -14,7 +13,7 @@ class MainMenuScreen extends StatelessWidget {
     return Scaffold(
       body: GestureDetector(
         onTap:() {
-          game.overlays.remove('mainMenu');
+          game.overlays.remove(DataApp.mainMenu);
           game.resumeEngine();
         },
         child: Container(

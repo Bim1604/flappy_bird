@@ -1,11 +1,10 @@
+import 'package:flappy_bird/flappy_game/data/data_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flappy_bird/flappy_game/data/asset.dart';
 import 'package:flappy_bird/flappy_game/flappy_game.dart';
 
 class GameOverScreen extends StatelessWidget {
   final FlappyGame game;
-  static const String id = "gameOver";
   const GameOverScreen({super.key, required this.game});
 
   @override
@@ -29,13 +28,21 @@ class GameOverScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(onPressed: (){
               Future.delayed(const Duration(milliseconds: 100),(){
-                game.overlays.remove('gameOver');
+                game.overlays.remove(DataApp.gameOver);
                 game.bird.reset();
                 game.resumeEngine();
               });
             }, 
             style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-            child: const Text("Restart", style: TextStyle(fontSize: 20),))
+            child: const Text("Restart", style: TextStyle(fontSize: 20),)),
+            const SizedBox(height: 20),
+            ElevatedButton(onPressed: (){
+              Future.delayed(const Duration(milliseconds: 100),(){
+                game.overlays.remove(DataApp.gameOver);
+                game.overlays.add(DataApp.highScore);
+              });
+            }, style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+                child: const Text("Game Score", style: TextStyle(fontSize: 20),))
           ],
         ),
       ),

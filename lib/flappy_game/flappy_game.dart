@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/text.dart';
-import 'package:flutter/painting.dart';
+import 'package:flappy_bird/flappy_game/models/data_score_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flappy_bird/flappy_game/components/background.dart';
 import 'package:flappy_bird/flappy_game/components/bird.dart';
 import 'package:flappy_bird/flappy_game/components/ground.dart';
@@ -10,11 +13,18 @@ import 'package:flappy_bird/flappy_game/components/pipeGround.dart';
 import 'package:flappy_bird/flappy_game/config/config.dart';
 
 class FlappyGame extends FlameGame with TapDetector, HasCollisionDetection{
+
+  final BuildContext context;
+  FlappyGame({
+    required this.context
+  });
+
   late Bird bird;
   late PipeGround pipeGround;
   late TextComponent score;
   bool isHit = false;
   Timer interval = Timer(Config.pipeInterval, repeat: true);
+  DataScoreModel dataScore = DataScoreModel(data: []);
 
   @override
   Future<void> onLoad() async {
@@ -29,7 +39,6 @@ class FlappyGame extends FlameGame with TapDetector, HasCollisionDetection{
       pipeGround,
       score,
     ]);
-    
     interval.onTick = () => add(PipeGround());
   }
 
@@ -59,4 +68,4 @@ class FlappyGame extends FlameGame with TapDetector, HasCollisionDetection{
 
     score.text = "Score :${bird.score}";
   }
-} 
+}
