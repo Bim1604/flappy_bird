@@ -65,6 +65,15 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+        release {
+            storeFile file(MY_STORE_FILE)
+            storePassword MY_STORE_PASSWORD
+            keyAlias MY_KEY_ALIAS
+            keyPassword MY_KEY_PASSWORD
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
