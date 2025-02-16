@@ -17,10 +17,10 @@ class ScoreModelAdapter extends TypeAdapter<ScoreModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ScoreModel(
-      id: fields[0] as int?,
+      id: fields[0] as String?,
       score: fields[1] == null ? 0 : fields[1] as int?,
       timeScore: fields[2] as String?,
-      map: fields[3] as int?,
+      userName: fields[3] as String?,
     );
   }
 
@@ -35,7 +35,7 @@ class ScoreModelAdapter extends TypeAdapter<ScoreModel> {
       ..writeByte(2)
       ..write(obj.timeScore)
       ..writeByte(3)
-      ..write(obj.map);
+      ..write(obj.userName);
   }
 
   @override

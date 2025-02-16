@@ -2,9 +2,7 @@ import 'package:flappy_bird/flappy_game/data/data_app.dart';
 import 'package:flappy_bird/flappy_game/flappy_game.dart';
 import 'package:flappy_bird/flappy_game/models/data_score_model.dart';
 import 'package:flappy_bird/flappy_game/models/score_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HighScoreScreen extends StatefulWidget {
@@ -17,22 +15,21 @@ class HighScoreScreen extends StatefulWidget {
 }
 
 class _HighScoreScreenState extends State<HighScoreScreen> {
-  DataScoreModel score = DataScoreModel(data: []);
-
-  @override
-  void initState() {
-    score = Provider.of<DataScoreModel>(context, listen: false);
-  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
-
+    final score = Provider.of<DataScoreModel>(context);
     return Center(
       child: Material(
         color: Colors.black38,
-        child: SizedBox(
-          height: size.height,
+        child: Container(
+          margin: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(.7),
+            borderRadius: BorderRadius.circular(10.0)
+          ),
+          height: size.height * .7,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +38,6 @@ class _HighScoreScreenState extends State<HighScoreScreen> {
                 "Highest score",
                 style: TextStyle(
                   fontSize: 40,
-                  color: Colors.white,
                   fontFamily: 'Game',
                 ),
               ),
@@ -60,20 +56,31 @@ class _HighScoreScreenState extends State<HighScoreScreen> {
                           margin: const EdgeInsets.only(bottom: 5.0, left: 10.0, right: 10.0),
                           child: Row(
                             children: [
+                              Container(
+                                padding: const EdgeInsets.all(7.0),
+                                margin: const EdgeInsets.only(right: 10.0),
+                                decoration: index < 3 ? BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: item.getBackgroundColorByIndex(index + 1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(.4),
+                                      blurRadius: 3,
+                                      offset: const Offset(1, 2),
+                                    ),
+                                  ],
+                                ) : null,
+                                child: Text((index + 1).toString(), style: TextStyle(color: index < 3 ? Colors.white : Colors.black, fontWeight: FontWeight.w700, fontSize: 16)),
+                              ),
                               Expanded(
-                                  child: Text(item.timeScore ?? '', style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontFamily: 'Game',
+                                  child: Text(item.userName ?? '', style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w500
                                   ))
                               ),
-                              Expanded(
-                                  child: Text("${item.score ?? 0}", style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontFamily: 'Game',
-                                  ), textAlign: TextAlign.right)
-                              ),
+                              Text("${item.score ?? 0}", style: const TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Game',
+                              ), textAlign: TextAlign.right),
                             ],
                           ),
                         );
@@ -84,20 +91,11 @@ class _HighScoreScreenState extends State<HighScoreScreen> {
               ElevatedButton(onPressed: (){
                 Future.delayed(const Duration(milliseconds: 100),(){
                   widget.game.overlays.remove(DataApp.highScore);
-                  widget.game.overlays.add(DataApp.gameOver);
+                  widget.game.overlays.add(DataApp.mainMenu);
                 });
               },
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
                   child: const Text("Back", style: TextStyle(fontSize: 20),)),
-              const SizedBox(height: 20),
-              ElevatedButton(onPressed: (){
-                Future.delayed(const Duration(milliseconds: 100),(){
-                  widget.game.overlays.remove(DataApp.highScore);
-                  widget.game.bird.reset();
-                  widget.game.resumeEngine();
-                });
-              }, style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-                  child: const Text("Restart", style: TextStyle(fontSize: 20),))
             ],
           ),
         ),
