@@ -12,3 +12,6 @@ Game Flappy Bird
 ![In-game image](assets/img_description/7.jpg)
 ![In-game image](assets/img_description/8.jpg)
 ![In-game image](assets/img_description/9.jpg)
+<a href="https://buymeacoffee.com/bimki" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" />
+</a>
